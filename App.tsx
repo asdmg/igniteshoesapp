@@ -17,13 +17,16 @@ import { CartContextProvider } from "./src/contexts/CartContext";
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
+  const onesignalAppId = process.env.EXPO_PUBLIC_ONESIGNAL_APP_ID;
+
+  console.log("OneSignal ID:", onesignalAppId);
 
   // Initialize OneSignal in useEffect to ensure it runs only once
   useEffect(() => {
     // Enable verbose logging for debugging (remove in production)
     OneSignal.Debug.setLogLevel(LogLevel.Verbose);
     // Initialize with your OneSignal App ID
-    OneSignal.initialize("YOUR_APP_ID");
+    OneSignal.initialize(onesignalAppId);
     // Use this method to prompt for push notifications.
     // We recommend removing this method after testing and instead use In-App Messages to prompt for notification permission.
     OneSignal.Notifications.requestPermission(false);
