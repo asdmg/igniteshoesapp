@@ -14,12 +14,18 @@ import { THEME } from "./src/theme";
 import { Loading } from "./src/components/Loading";
 
 import { CartContextProvider } from "./src/contexts/CartContext";
+import {
+  tagUserEmailCreated,
+  tagUserEmailDeleted,
+} from "./src/notifications/notificationsTags";
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
   const onesignalAppId = process.env.EXPO_PUBLIC_ONESIGNAL_APP_ID;
 
-  console.log("OneSignal ID:", onesignalAppId);
+  tagUserEmailCreated("alex.sander@example.com");
+
+  //tagUserEmailDeleted();
 
   // Initialize OneSignal in useEffect to ensure it runs only once
   useEffect(() => {
